@@ -1,0 +1,292 @@
+interface ProcessSection {
+  heading: string
+  content: string
+}
+
+export interface Project {
+  slug: string
+  title: string
+  name: string
+  tagline: string
+  description: string
+  process: ProcessSection[]
+  techStack: string[]
+  image: string
+  liveUrl?: string
+  repoUrl?: string
+  github?: string
+}
+
+export const projects: Project[] = [
+  {
+    slug: 'aldric',
+    title: 'Aldric',
+    name: 'Aldric — Local AI Agent Crew',
+    tagline: 'Fully local multi-agent automation running on Apple Silicon',
+    description:
+      "Aldric is a fully local multi-agent AI automation system running on a Mac Mini M4 Pro with 64GB RAM. It's a crew of four specialized AI agents — each handling a different domain of my life — orchestrated by CrewAI, powered by local LLMs through Ollama, and secured by a NeMo Guardrails safety layer. No cloud APIs, no data leaving my machine, no monthly subscriptions. Everything runs on Apple Silicon.",
+    process: [
+      {
+        heading: 'The Problem',
+        content:
+          "I was paying for ChatGPT, using Claude's API, and still copy-pasting between tools to get things done. I wanted something that could handle my finances, help with school, run my business research, and answer general questions — all without sending my data to someone else's servers. The question was simple: can a single Mac Mini replace all of that?",
+      },
+      {
+        heading: 'Architecture',
+        content:
+          "I chose CrewAI as the orchestration framework because it lets you define agents with specific roles, goals, and tools — then have them collaborate or work independently. Each agent runs a different local model through Ollama: Ledger (finance) and Forge (business) run Qwen 2.5 32B for complex reasoning, Lumen (education) runs Gemma 3 27B for tutoring, and Aldric (general) runs Llama 3.1 8B for fast everyday tasks. The M4 Pro handles all of this with Apple Metal acceleration — no GPU server needed.",
+      },
+      {
+        heading: 'The Agents',
+        content:
+          "Ledger is my personal CFO — it connects to five real bank accounts through Plaid API, reads transactions, enforces spending rules I set, and generates monthly trend reports. It's completely read-only by design, so it can never move money. Forge is my business strategist — it pulls news feeds, YouTube transcripts, RSS blogs, and competitor data to generate market analysis and growth plans. Lumen is my study partner — it reads my WGU course materials and auto-generates Anki flash cards with detailed explanations, then syncs them directly to my Anki deck. Aldric is the general assistant that handles everything else.",
+      },
+      {
+        heading: 'Discord Integration',
+        content:
+          'Each agent runs as its own Discord bot, so I can talk to any of them from my phone or desktop through Discord. I built a router (discord_router.py) that runs all four bots concurrently. Ask Ledger about my spending, ask Forge for a competitive analysis, ask Lumen to quiz me — all through natural language in Discord channels.',
+      },
+      {
+        heading: 'Security',
+        content:
+          'Since Ledger handles real financial data, security wasn\'t optional. I implemented NeMo Guardrails with custom Colang rules that create three layers of protection: input filtering blocks jailbreak attempts and prompt injection, output filtering prevents credential leaks and PII exposure, and behavioral constraints keep each agent within its defined role. The guardrails model runs on Llama 3.1 locally, adding minimal latency while maintaining strict security boundaries.',
+      },
+      {
+        heading: 'Dashboards',
+        content:
+          "Each agent has its own web dashboard running on a dedicated port — Aldric on 8585, Forge on 8586, Ledger on 8587, Lumen on 8588. The dashboards include real-time data visualization, task management, scheduling, news feeds, flash card study views with TTS, and more. All dashboards share a common backend architecture but each has features specific to its domain.",
+      },
+    ],
+    techStack: ['Python', 'CrewAI', 'Ollama', 'Discord.py', 'NeMo Guardrails', 'qwen2.5:32b', 'llama3.1', 'deepseek-r1:32b'],
+    image: 'https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=600&q=80',
+    repoUrl: '#',
+    github: 'https://github.com/EdCromwell/aldric-project',
+  },
+  {
+    slug: 'ledger',
+    title: 'Ledger',
+    name: 'Ledger — Personal CFO Agent',
+    tagline: 'AI-powered financial management with real bank connections',
+    description:
+      "Ledger is my personal CFO agent — an AI-powered financial manager that connects to real bank accounts through Plaid API, reads live transactions, enforces spending rules, and generates monthly trend analysis. It handles five bank accounts across four institutions, all running locally on Qwen 2.5 32B. The entire system is read-only by design — Ledger can observe and advise, but never move money.",
+    process: [
+      {
+        heading: 'Why I Built It',
+        content:
+          "I had accounts at USAA, Langley Federal, First Foundation Bank, Capital One, and Chase — and no clear picture of where my money was going. Mint was gone, and I didn't trust any app with all my banking credentials. I wanted something that runs locally, connects to real accounts, and gives me honest financial analysis without selling my data.",
+      },
+      {
+        heading: 'Plaid Integration',
+        content:
+          "I built a custom Plaid client (plaid_client.py) that handles OAuth flows and token management for each institution. The system stores access tokens locally and pulls transaction data on demand. I went through Plaid's sandbox first, then applied for production access — getting approved for 4 out of 5 banks (Capital One is still pending their registration process). The client exposes a clean interface that the agent uses through 7 high-level financial tools.",
+      },
+      {
+        heading: 'Financial Rules Engine',
+        content:
+          'I wrote LEDGER_RULES.md — a 318-line financial operating constitution that tells Ledger exactly how to categorize spending, which accounts serve which purpose (FFB for fund allocation, Chase as credit/debt), and what triggers alerts. The rules engine enforces budgets, flags anomalies, and generates structured monthly snapshots comparing spending across categories.',
+      },
+      {
+        heading: 'Dashboard',
+        content:
+          "Ledger's dashboard (port 8587) shows account balances, recent transactions, spending breakdowns by category, monthly trend charts, and the ability to chat with Ledger directly. It includes TTS so Ledger can read financial summaries out loud, scheduled tasks for automated reports, and a to-do list for financial action items.",
+      },
+    ],
+    techStack: ['Python', 'Plaid API', 'Qwen 2.5:32b', 'CrewAI'],
+    image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&q=80',
+    github: 'https://github.com/EdCromwell/aldric-project',
+  },
+  {
+    slug: 'forge',
+    title: 'Forge',
+    name: 'Forge — Business Strategy Agent',
+    tagline: 'Market analysis and competitive intelligence',
+    description:
+      'Forge is my business strategy agent — it aggregates market intelligence, analyzes competitors, manages product research pipelines, and generates actionable growth plans. It powers the business side of everything I do, from PROPER SUPPLY product sourcing to identifying new market opportunities. Runs on Qwen 2.5 32B locally.',
+    process: [
+      {
+        heading: 'The Vision',
+        content:
+          'I needed an always-on business analyst that could monitor trends, pull competitor data, and help me make decisions faster. Instead of spending hours researching products or markets, I wanted to ask a question and get a structured answer backed by real data.',
+      },
+      {
+        heading: 'News & Intelligence',
+        content:
+          "Forge pulls from multiple data sources — YouTube transcripts from tech influencers (NetworkChuck, Elon Musk interviews), RSS blog feeds, NBA/NFL/volleyball feeds for cultural awareness, and web searches for market research. All of this feeds into Forge's context so it can give informed recommendations.",
+      },
+      {
+        heading: 'Store Management',
+        content:
+          "When I launched PROPER SUPPLY, Forge became the engine behind product research. It has a full product research pipeline that evaluates market fit, competitive pricing, and demand signals. The Store tab in Forge's dashboard connects to Shopify for inventory management, competitor price monitoring, and product performance tracking. It also manages the Ventures tab where I track all my business initiatives.",
+      },
+      {
+        heading: 'Dashboard',
+        content:
+          "Forge runs on port 8586 with a dashboard that includes news feeds with video thumbnails, a chat interface for strategy questions, task management, scheduling, category-based organization, and the Ventures/Store management panels. It also runs as a launchd service so it starts automatically with my Mac.",
+      },
+    ],
+    techStack: ['Python', 'CrewAI', 'Qwen 2.5:32b', 'Discord.py'],
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80',
+    github: 'https://github.com/EdCromwell/aldric-project',
+  },
+  {
+    slug: 'lumen',
+    title: 'Lumen',
+    name: 'Lumen — AI Study Platform',
+    tagline: 'Intelligent tutoring with flash cards and spaced repetition',
+    description:
+      'Lumen is my AI-powered study platform built specifically for WGU coursework. It reads course materials, auto-generates high-quality Anki flash cards with detailed explanations, syncs directly with my Anki deck, and includes a built-in study mode with text-to-speech. Powered by Gemma 3 27B running locally.',
+    process: [
+      {
+        heading: 'The Problem',
+        content:
+          "WGU courses are dense — hundreds of pages of material per module, and the existing study tools weren't cutting it. I was spending more time making flash cards than actually studying. I needed something that could read the course content, understand what's important, and generate study materials automatically.",
+      },
+      {
+        heading: 'Card Generation',
+        content:
+          "I built a card generator that takes WGU course content and produces Anki-format flash cards with a specific format I designed: the front has the question with multiple choice options using dashes (not A/B/C/D), and the back has the bold correct answer, a detailed explanation of why it's right, and analysis of why each wrong answer is wrong. I refined the LLM prompt through extensive testing to get consistent, high-quality output. The system has generated and improved over 261 flash cards across multiple modules.",
+      },
+      {
+        heading: 'Anki Integration',
+        content:
+          'Lumen connects directly to Anki through AnkiConnect for live sync when Anki is open. It can push new cards to a deck, pull existing cards for review, and manage the entire deck lifecycle. I also built a .apkg export system using genanki so I can generate complete Anki deck files for import. The flash cards tab in the dashboard lets me review, edit, and generate cards without ever opening Anki directly.',
+      },
+      {
+        heading: 'Study Features',
+        content:
+          "The dashboard includes a full study view that mirrors Anki's card-flip flow with spaced repetition rating buttons. There's an auto-read mode for hands-free study, sentence-highlighting TTS that reads cards aloud while tracking along, a custom study mode for targeted review, and a TTS Reader tab that can read entire course modules with play/pause controls. I also built a Pomodoro timer into the dashboard for structured study sessions.",
+      },
+    ],
+    techStack: ['Python', 'Gemma3:27b', 'AnkiConnect', 'Edge-TTS'],
+    image: 'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=600&q=80',
+    github: 'https://github.com/EdCromwell/aldric-project',
+  },
+  {
+    slug: 'pulse',
+    title: 'Pulse',
+    name: 'Pulse — Crypto Arbitrage Scanner',
+    tagline: 'Real-time price differential detection across exchanges',
+    description:
+      'Pulse is a real-time cryptocurrency arbitrage scanner that monitors price differentials across multiple exchanges simultaneously. It detects spread opportunities in sub-second cycles, scores them by profitability and risk, and feeds results into a paper trading engine for strategy validation.',
+    process: [
+      {
+        heading: 'The Concept',
+        content:
+          'Crypto prices vary slightly between exchanges at any given moment. If you can detect those differences fast enough, you can theoretically buy low on one exchange and sell high on another. I wanted to build a system that could monitor these price differentials in real-time and identify profitable opportunities.',
+      },
+      {
+        heading: 'Architecture',
+        content:
+          'The scanner uses async parallel price fetching with aiohttp and ccxt to pull prices from multiple exchanges simultaneously — the entire fetch-compare-alert cycle runs in under a second. I built a dynamic fee model that accounts for trading fees, withdrawal fees, and network costs to calculate true profitability. The slippage estimation model factors in order book depth to predict actual execution prices.',
+      },
+      {
+        heading: 'Features',
+        content:
+          'Pulse includes spread alert thresholds for notification when opportunities hit target profitability, historical trend analysis to track how spreads behave over time, a triangular arbitrage detector for three-way trading opportunities, and a full paper trading engine for testing strategies without risking real money. The P&L tracking simulates portfolio performance based on detected opportunities.',
+      },
+      {
+        heading: 'Dashboard',
+        content:
+          'The Pulse dashboard (port 8590) shows live spread data, opportunity scoring, historical charts, the paper trading interface, and P&L summaries. It includes staleness guards and price timestamping to ensure data quality, and order book depth visualization for understanding market liquidity.',
+      },
+    ],
+    techStack: ['Python', 'aiohttp', 'asyncio', 'ccxt'],
+    image: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&q=80',
+    github: 'https://github.com/EdCromwell/aldric-project',
+  },
+  {
+    slug: 'proper-supply',
+    title: 'PROPER SUPPLY',
+    name: 'PROPER SUPPLY — Streetwear Storefront',
+    tagline: 'West Coast lifestyle e-commerce brand',
+    description:
+      "PROPER SUPPLY is a West Coast lifestyle e-commerce brand I built from scratch — from brand strategy and product research to a fully custom React storefront deployed on Vercel. The site features a dark editorial design with warm gold accents, inspired by streetwear brands like ALYX and the OpenSpaces design aesthetic.",
+    process: [
+      {
+        heading: 'Brand Development',
+        content:
+          "Started with a blank page and built the entire brand identity — name, tagline ('Keepin It P'), visual language, and product philosophy. Researched the streetwear/lifestyle market, identified a gap for curated everyday essentials, and developed a long-term brand strategy with an aggressive launch timeline. The brand targets people who move with purpose — quality over quantity, every product earns its spot.",
+      },
+      {
+        heading: 'Product Curation',
+        content:
+          "Used Forge's product research engine to evaluate potential products against brand fit, market demand, and margin targets. Curated a launch lineup of 6 products spanning Travel, Daily Carry, Outdoor, Creator, and Accessories categories. Each product went through research, competitive pricing analysis, and brand alignment review before making the cut.",
+      },
+      {
+        heading: 'Custom Storefront',
+        content:
+          "After trying multiple Shopify themes (Colorblock, Ride) and exploring paid options like OpenSpaces' Plain Jane, I went the custom route. Built a full React storefront with Vite and Tailwind CSS using a dark editorial design language — #111111 background, #EDE8DC warm cream text, #D4A853 gold accents, Barlow Condensed headings, Karla body text. The site includes a scrolling hero, featured products grid, collection pages, full product detail pages with cart functionality, and newsletter signup.",
+      },
+      {
+        heading: 'Deployment',
+        content:
+          'The storefront is deployed on Vercel with the propersupply.store domain connected. Products live in Shopify for inventory and checkout management. The site auto-deploys from GitHub — every push to main goes live in seconds. The architecture separates the brand experience (custom frontend) from the commerce engine (Shopify), giving full creative control without Shopify theme limitations.',
+      },
+    ],
+    techStack: ['React', 'Vite', 'Tailwind CSS', 'Shopify', 'Vercel'],
+    image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&q=80',
+    liveUrl: '#',
+    github: 'https://github.com/EdCromwell/proper-supply-site',
+  },
+  {
+    slug: 'edcromwell',
+    title: 'edcromwell.com',
+    name: 'edcromwell.com — Personal Brand',
+    tagline: 'Portfolio and personal brand website',
+    description:
+      'My personal brand website — a three-section portfolio built with React, Vite, and Tailwind CSS. Career (splash page), Business (services), and a hidden Personal gallery accessible only by direct URL. Warm cream and brown design palette with vintage B&W architectural photography.',
+    process: [
+      {
+        heading: 'Concept',
+        content:
+          "I wanted a personal site that separates my professional identity into distinct contexts — career history and projects for employers/recruiters, business services for potential clients, and a private photo gallery for personal use. The Personal section is intentionally hidden from navigation — you can only access it if you know the URL.",
+      },
+      {
+        heading: 'Design',
+        content:
+          'Chose a warm cream (#FAF6F1) and brown (#5C3D1A) palette to differentiate from PROPER SUPPLY\'s dark theme. Vintage B&W architectural photography (NYC skylines, skyscrapers) adds editorial character. The Career page uses my NASA speaking photo as a B&W hero background. Barlow Condensed for headings, Karla for body — same typography foundation as PROPER SUPPLY but with a completely different color energy.',
+      },
+      {
+        heading: 'Architecture',
+        content:
+          'React with Vite for sub-second HMR during development. Wouter for lightweight routing. Framer Motion for scroll animations and page transitions. Each project card links to a dedicated detail page with full write-ups, tech stack badges, and GitHub links. The site auto-deploys to Vercel from GitHub.',
+      },
+    ],
+    techStack: ['React', 'Vite', 'Tailwind CSS', 'Vercel'],
+    image: 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=600&q=80',
+    liveUrl: '#',
+    github: 'https://github.com/EdCromwell/edcromwell-site',
+  },
+  {
+    slug: 'guardrails',
+    title: 'Guardrails Layer',
+    name: 'NeMo Guardrails Security Layer',
+    tagline: '3-layer AI safety system for agent protection',
+    description:
+      'A three-layer AI safety system built with NeMo Guardrails and custom Colang rules. Protects all Aldric agents from jailbreak attempts, credential leaks, PII exposure, and role boundary violations. The guardrails model runs on Llama 3.1 locally with minimal latency impact.',
+    process: [
+      {
+        heading: 'Why Security Matters',
+        content:
+          'Aldric handles real financial data through Plaid, personal study materials, and business intelligence. If someone could jailbreak an agent through Discord, they could potentially access bank account information or sensitive business data. Security wasn\'t an afterthought — it was a requirement before the system could go live.',
+      },
+      {
+        heading: 'Three Layers',
+        content:
+          "Layer 1 — Input Filtering: Custom Colang rules intercept incoming messages and block jailbreak attempts, prompt injection, and social engineering before they reach the agent. Layer 2 — Output Filtering: Scans agent responses for credential leaks, API keys, PII, and sensitive data before sending to the user. Layer 3 — Behavioral Constraints: Ensures each agent stays within its defined role — Ledger can't answer business questions, Forge can't access financial data, etc.",
+      },
+      {
+        heading: 'Implementation',
+        content:
+          'The guardrails are defined in config.yml (pointing to Ollama/llama3.1 as the guardrail model) and guardrails.co (the Colang rules file). The system integrates at the CrewAI level so every agent interaction passes through the security layer automatically. Testing included adversarial prompting to ensure the guardrails hold under pressure.',
+      },
+    ],
+    techStack: ['Python', 'NeMo Guardrails', 'Colang', 'Ollama'],
+    image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=600&q=80',
+    github: 'https://github.com/EdCromwell/aldric-project',
+  },
+]
+
+export function getProjectBySlug(slug: string): Project | undefined {
+  return projects.find((p) => p.slug === slug)
+}
