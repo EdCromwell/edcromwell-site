@@ -1,4 +1,6 @@
-import { Mail, Github, Linkedin } from 'lucide-react'
+import { Mail, Github, Linkedin, Lock } from 'lucide-react'
+import { Link } from 'wouter'
+import { SignedIn } from '@clerk/clerk-react'
 
 export default function Footer() {
   return (
@@ -39,6 +41,17 @@ export default function Footer() {
           >
             <Linkedin size={18} />
           </a>
+          {/* Only rendered when signed in — keeps the admin entry invisible to the public */}
+          <SignedIn>
+            <Link href="/admin">
+              <span
+                className="text-cream/40 hover:text-gold transition-colors cursor-pointer"
+                aria-label="Admin"
+              >
+                <Lock size={18} />
+              </span>
+            </Link>
+          </SignedIn>
         </div>
 
         <span className="text-cream/30 text-xs font-body">
