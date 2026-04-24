@@ -65,9 +65,6 @@ function JobCard({ job, i }: { job: typeof employment[number]; i: number }) {
           <h4 className="font-heading text-xl font-bold uppercase tracking-wider text-cream">
             {job.role}
           </h4>
-          <span className="font-body text-xs tracking-wider text-gold uppercase shrink-0">
-            {job.dates}
-          </span>
         </div>
         <p className="font-body text-cream/50 text-sm mb-4">
           {job.org} — {job.location}
