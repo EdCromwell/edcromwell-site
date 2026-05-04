@@ -1,0 +1,215 @@
+{
+  "_meta": {
+    "note": "Edit this file to add posts. Each post is either a 'track' (a song share) or a 'gallery' (photos with a paired soundtrack). To get a youtube_id: open the YouTube URL like youtube.com/watch?v=GR3Liudev18 — the part after 'v=' is the id.",
+    "updated": "2026-04-28"
+  },
+  "featured": {
+    "type": "gallery",
+    "gallery_id": "p002",
+    "caption": "frisco felt like a place where weather and architecture were having an argument."
+  },
+  "year_picks": {
+    "year": 2026,
+    "album": {
+      "title": "",
+      "artist": "",
+      "cover_url": "",
+      "why": "",
+      "listen_url": ""
+    },
+    "song": {
+      "youtube_id": "",
+      "title": "",
+      "artist": "",
+      "cover_url": "",
+      "why": ""
+    }
+  },
+  "books": [
+    {
+      "id": "b003",
+      "title": "Expeditionary Force: Columbus Day",
+      "author": "Craig Alanson",
+      "cover_url": "/me/covers/Expeditionary_Force_Book_1_Columbus_Day-moi0o7g9.webp",
+      "recommendation": "",
+      "link": "",
+      "category": "",
+      "posted_at": "2026-04-28"
+    },
+    {
+      "id": "b002",
+      "title": "Ender's Game",
+      "author": "Orson Scott Card",
+      "cover_url": "/me/covers/Ender_s_Game-moi0lidd.webp",
+      "recommendation": "",
+      "link": "",
+      "category": "",
+      "posted_at": "2026-04-28"
+    },
+    {
+      "id": "b001",
+      "title": "The Martian",
+      "author": "Andy Weir",
+      "cover_url": "/me/covers/The_Martian-moi0jmaj.jpeg",
+      "recommendation": "",
+      "link": "",
+      "category": "",
+      "posted_at": "2026-04-28"
+    }
+  ],
+  "playlists": [
+    {
+      "id": "pl001",
+      "title": "Everyday Numbers",
+      "description": "",
+      "cover_url": "/me/covers/Larry_June_quote-mohvx4td.jpg",
+      "tracks": [
+        {
+          "youtube_id": "xpWv87lFLgM",
+          "title": "Another Day",
+          "artist": "Larry June",
+          "cover_url": "/me/covers/Spaceships-mohvn3p2.jpeg"
+        },
+        {
+          "youtube_id": "Josmg1EqDOA",
+          "title": "Lead Sled",
+          "artist": "Ramirez",
+          "cover_url": "/me/covers/Ramirez_Playas_Manual_-mohvrfg7.jpeg"
+        },
+        {
+          "youtube_id": "r5ujo7icpH8",
+          "title": "Blue Laces 2",
+          "artist": "Nipsey Hussle",
+          "cover_url": "/me/covers/Nipsey_Hussle_Album-mohvtxao.jpg"
+        }
+      ]
+    }
+  ],
+  "posts": [
+    {
+      "id": "p003",
+      "type": "track",
+      "youtube_id": "THVbtGqEO1o",
+      "title": "Fair Trade",
+      "artist": "Drake",
+      "cover_url": "/me/covers/Drake-Tristan-C-M.jpg",
+      "caption": "",
+      "posted_at": "2026-04-27"
+    },
+    {
+      "id": "p013",
+      "type": "gallery",
+      "title": "PR",
+      "caption": "",
+      "tags": [],
+      "photos": [
+        "/me/galleries/p013/IMG_1633.JPG",
+        "/me/galleries/p013/IMG_1684.jpg",
+        "/me/galleries/p013/IMG_1799.jpeg",
+        "/me/galleries/p013/IMG_1731.JPG",
+        "/me/galleries/p013/IMG_1749.JPG",
+        "/me/galleries/p013/IMG_1992.jpg",
+        "/me/galleries/p013/IMG_1649.jpg",
+        "/me/galleries/p013/IMG_1739.JPG",
+        "/me/galleries/p013/IMG_1751.JPG",
+        "/me/galleries/p013/IMG_1639.JPG",
+        "/me/galleries/p013/IMG_1609.jpg",
+        "/me/galleries/p013/IMG_1621.JPG",
+        "/me/galleries/p013/IMG_1592.JPG",
+        "/me/galleries/p013/IMG_1605.jpg",
+        "/me/galleries/p013/IMG_1696.jpg",
+        "/me/galleries/p013/IMG_1613.jpg",
+        "/me/galleries/p013/IMG_1724.JPG",
+        "/me/galleries/p013/IMG_1588.JPG",
+        "/me/galleries/p013/IMG_1693.jpg",
+        "/me/galleries/p013/IMG_1583.jpeg",
+        "/me/galleries/p013/IMG_1677.jpg",
+        "/me/galleries/p013/IMG_1700.jpg"
+      ],
+      "soundtrack": {
+        "youtube_id": "6Zm5yrJCnQk",
+        "title": "Lo Siento",
+        "artist": "Bad Bunny",
+        "cover_url": "/me/covers/Data__Tainy__album.jpg"
+      },
+      "posted_at": "2026-04-27"
+    },
+    {
+      "id": "p012",
+      "type": "track",
+      "youtube_id": "vA9yex0-ntI",
+      "title": "K9",
+      "artist": "Don Toliver Ft SahBabii",
+      "cover_url": "/me/covers/Don_Toliver_-_Octane_cover.png",
+      "caption": "",
+      "posted_at": "2026-04-27"
+    },
+    {
+      "id": "p011",
+      "type": "track",
+      "youtube_id": "E-I1h2VL888",
+      "title": "The Good Kind",
+      "artist": "Larry June",
+      "cover_url": "/me/covers/Larry_June_Night_Shift.jpeg",
+      "caption": "",
+      "posted_at": "2026-04-27"
+    },
+    {
+      "id": "p010",
+      "type": "track",
+      "youtube_id": "EzP407HY_mY",
+      "title": "Mezmorized",
+      "artist": "Wiz Khalifa",
+      "cover_url": "/me/covers/Wiz_Khalifa_smoking.jpg",
+      "caption": "",
+      "posted_at": "2026-04-27"
+    },
+    {
+      "id": "p009",
+      "type": "track",
+      "youtube_id": "rS7Va0sBYAM",
+      "title": "Smooth Operator",
+      "artist": "Sade",
+      "cover_url": "/me/covers/Sade_image.jpg",
+      "caption": "",
+      "posted_at": "2026-04-27"
+    },
+    {
+      "id": "p002",
+      "type": "gallery",
+      "title": "Frisco",
+      "caption": "",
+      "tags": [],
+      "photos": [
+        "/me/galleries/p002/IMG_2514.jpg",
+        "/me/galleries/p002/IMG_2906.jpg",
+        "/me/galleries/p002/IMG_2911.jpg",
+        "/me/galleries/p002/IMG_2660.jpg",
+        "/me/galleries/p002/IMG_3419.jpg",
+        "/me/galleries/p002/IMG_3435.jpg",
+        "/me/galleries/p002/IMG_3438.jpg",
+        "/me/galleries/p002/IMG_3494.jpg",
+        "/me/galleries/p002/IMG_3643.jpg",
+        "/me/galleries/p002/IMG_2641.jpg",
+        "/me/galleries/p002/IMG_3430.jpg"
+      ],
+      "soundtrack": {
+        "youtube_id": "4mXpx1gVkLI",
+        "title": "Orange Village",
+        "artist": "Larry June",
+        "cover_url": "/me/covers/Larry_June_The_Great_Escape.jpg"
+      },
+      "posted_at": "2026-04-21"
+    },
+    {
+      "id": "p001",
+      "type": "track",
+      "youtube_id": "nN8_I7MQRrE",
+      "title": "Appreciate It All",
+      "artist": "Larry June",
+      "cover_url": "/me/covers/Spaceships.jpeg",
+      "caption": "for the long drives.",
+      "posted_at": "2026-04-22"
+    }
+  ]
+}

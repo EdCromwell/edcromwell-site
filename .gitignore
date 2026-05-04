@@ -1,0 +1,38 @@
+.DS_Store
+*.pyc
+*.log
+*.bak
+__pycache__/
+**/__pycache__/
+node_modules/
+**/node_modules/
+.next/
+.vercel/
+dist/
+build/
+
+# Secrets
+.env
+.env.local
+.env.*.local
+gmail/
+notion/
+**/credentials.json
+**/token.json
+**/token.txt
+**/token.pickle
+**/tokens.json
+**/secrets.json
+*.pem
+*.key
+*.cert
+
+# Python venvs
+venv/
+.venv/
+env/
+
+# Logs / OS
+logs/
+.DS_Store
+Thumbs.db

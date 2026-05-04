@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #FAF6F1;
+  color: #2C2216;
+  font-family: 'Karla', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background-color: #5C3D1A;
+  color: #FAF6F1;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #FAF6F1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(92, 61, 26, 0.25);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(92, 61, 26, 0.5);
+}
+
+/* Hide scrollbar on horizontal swipe carousels (e.g., mobile services
+   carousel on /business). Native swipe still works; we just don't want
+   the scrollbar drawing under the cards. */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  scrollbar-width: none;
+}
